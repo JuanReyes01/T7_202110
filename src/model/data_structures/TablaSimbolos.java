@@ -5,8 +5,10 @@ import java.util.Random;
 public class TablaSimbolos<K extends Comparable<K>, V> implements ITablaSimbolos<K, V> {
 
 	private ArregloDinamico<NodoTS<K,V>> tabla;
+	private int tot;
 	
 	public TablaSimbolos(int c) {
+		tot = c;
 		tabla = new ArregloDinamico<NodoTS<K,V>>(c);
 	}
 	
@@ -52,7 +54,9 @@ public class TablaSimbolos<K extends Comparable<K>, V> implements ITablaSimbolos
 //	}
 	public V get(K k){
 		int pos = hash(k);
+		if(tabla.getElement(pos)!=null)
 		return tabla.getElement(pos).darValor();
+		return null;
 	}
 
 	/**
@@ -112,15 +116,17 @@ public class TablaSimbolos<K extends Comparable<K>, V> implements ITablaSimbolos
 	public ILista<K> keySet() {
 		ArregloDinamico<K> llaves = new ArregloDinamico<K>(); 
 		for(int i=1;i<=tabla.size();i++){
-			llaves.addLast(tabla.getElement(i).darLlave());
+			if(tabla.getElement(i)!=null)
+				llaves.addLast(tabla.getElement(i).darLlave());
 		}
+		
 		return llaves;
 	}
 
 	public ILista<V> valueSet() {
-		ArregloDinamico<V> valores = new ArregloDinamico<V>(); 
+		ArregloDinamico valores = new ArregloDinamico(); 
 		for(int i=1;i<=tabla.size();i++){  
-			valores.addLast(tabla.getElement(i).darValor());
+			valores.addLast((Comparable) tabla.getElement(i).darValor());
 		}
 		return valores;
 	}
@@ -128,12 +134,10 @@ public class TablaSimbolos<K extends Comparable<K>, V> implements ITablaSimbolos
 	@Override
 	public int hash(K key) {
 		int p = nextPrime(tabla.size());
-		int m = tabla.size();
-		int h = hash(key);
-		Random r = new Random();
-		int a = r.nextInt(p-1);
-		int b = r.nextInt(p);
-		return (Math.abs(a*(h)+b)%p)%m;
+		int m = tot;
+		int h = key.hashCode();
+		
+		return (Math.abs(h)%m);
 	}
 	
 	

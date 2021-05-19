@@ -201,13 +201,13 @@ public class TablaHashSeparateChaining<K extends Comparable<K>, V> implements IT
 
 	@Override
 	public ILista<V> valueSet() {
-		ArregloDinamico<V> valores = new ArregloDinamico<V>();
+		ArregloDinamico valores = new ArregloDinamico();
     	for(int i=0; i<tablaHash.length;i++){
     		ArregloDinamico<NodoTS<K, V>> actual = tablaHash[i];
     		for(int j=1; j<=actual.size();j++){
     			NodoTS<K, V> nodo = actual.getElement(j);
     			if(nodo!=null)
-    				valores.addLast(nodo.darValor());
+    				valores.addLast((Comparable) nodo.darValor());
     		}
     	}
     	return valores;

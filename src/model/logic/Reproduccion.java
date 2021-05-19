@@ -2,17 +2,14 @@ package model.logic;
 
 import java.util.Date;
 
+import model.data_structures.ArregloDinamico;
+
 public class Reproduccion implements Comparable<Reproduccion>{
 
-	private double instrumentalness;
-	private double liveness;
-	private double speechiness;
-	private double danceability;
-	private double valence;
+	
 	private double loudness;
 	private double tempo;
-	private double acousticness;
-	private double energy;
+
 	private int mode;
 	private int key;
 	private String artist_id;
@@ -23,19 +20,13 @@ public class Reproduccion implements Comparable<Reproduccion>{
 	private String time_zone;
 	private int user_id;
 	private int id;
+	private ArregloDinamico<Double> caracteristicas;
 	
-	public Reproduccion(double instrumentalness, double liveness, double speechiness,double danceability,double valence, double loudness,double tempo,
-	double acousticness,double energy, int mode, int key, String artist_id, String tweet_lang,String track_id, Date created_at, String lang, String time_zone, int user_id, int id) {
-	
-		this.instrumentalness = instrumentalness;
-		this.liveness = liveness;
-		this.speechiness = speechiness;
-		this.danceability = danceability;
-		this.valence = valence;
+	public Reproduccion(ArregloDinamico<Double> caracteristicas,double loudness,double tempo, int mode, int key, String artist_id, String tweet_lang,String track_id, Date created_at, String lang, String time_zone, int user_id, int id) {
+		
+		this.caracteristicas =  caracteristicas;
 		this.loudness = loudness;
 		this.tempo = tempo;
-		this.acousticness = acousticness;
-		this.energy = energy;
 		this.mode = mode;
 		this.key = key;
 		this.artist_id = artist_id;
@@ -48,75 +39,14 @@ public class Reproduccion implements Comparable<Reproduccion>{
 		this.id = id;
 	}
 
-	/**
-	 * @return the instrumentalness
-	 */
-	public double darInstrumentalness() {
-		return instrumentalness;
+	public ArregloDinamico<Double> darCaracteristicas(){
+		return caracteristicas;
+	}
+	
+	public void asignarCaracteristicas(ArregloDinamico caracteristicas){
+		this.caracteristicas = caracteristicas;
 	}
 
-	/**
-	 * @param instrumentalness the instrumentalness to asignar
-	 */
-	public void asignarInstrumentalness(double instrumentalness) {
-		this.instrumentalness = instrumentalness;
-	}
-
-	/**
-	 * @return the liveness
-	 */
-	public double darLiveness() {
-		return liveness;
-	}
-
-	/**
-	 * @param liveness the liveness to asignar
-	 */
-	public void asignarLiveness(double liveness) {
-		this.liveness = liveness;
-	}
-
-	/**
-	 * @return the speechiness
-	 */
-	public double darSpeechiness() {
-		return speechiness;
-	}
-
-	/**
-	 * @param speechiness the speechiness to asignar
-	 */
-	public void asignarSpeechiness(double speechiness) {
-		this.speechiness = speechiness;
-	}
-
-	/**
-	 * @return the danceability
-	 */
-	public double darDanceability() {
-		return danceability;
-	}
-
-	/**
-	 * @param danceability the danceability to asignar
-	 */
-	public void asignarDanceability(double danceability) {
-		this.danceability = danceability;
-	}
-
-	/**
-	 * @return the valence
-	 */
-	public double darValence() {
-		return valence;
-	}
-
-	/**
-	 * @param valence the valence to asignar
-	 */
-	public void asignarValence(double valence) {
-		this.valence = valence;
-	}
 
 	/**
 	 * @return the loudness
@@ -146,33 +76,6 @@ public class Reproduccion implements Comparable<Reproduccion>{
 		this.tempo = tempo;
 	}
 
-	/**
-	 * @return the acousticness
-	 */
-	public double darAcousticness() {
-		return acousticness;
-	}
-
-	/**
-	 * @param acousticness the acousticness to asignar
-	 */
-	public void asignarAcousticness(double acousticness) {
-		this.acousticness = acousticness;
-	}
-
-	/**
-	 * @return the energy
-	 */
-	public double darEnergy() {
-		return energy;
-	}
-
-	/**
-	 * @param energy the energy to asignar
-	 */
-	public void asignarEnergy(double energy) {
-		this.energy = energy;
-	}
 
 	/**
 	 * @return the mode

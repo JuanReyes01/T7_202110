@@ -82,22 +82,19 @@ public class RBT<K extends Comparable<K>, V extends Comparable<V>> implements IT
 
 	@Override
 	public ILista<K> keysInRange(K init, K end) {
-			ILista<K> listaLlaves = new ArregloDinamico<K>();
-			listaLlaves = keyset();
-			int i = listaLlaves.isPresent(init);
-			int f = listaLlaves.isPresent(end);
-			return listaLlaves.subList(i, f);
+			ArregloDinamico<K> listaLlaves = new ArregloDinamico<K>();
+			if (raiz!=null)
+				raiz.keysInRange(listaLlaves, init, end);
+			return listaLlaves;
 	}
 
 	@Override
 	public ILista<V> valuesInRange(K init, K end) {
-		ILista<K> llaves = keysInRange(init, end);
-		ILista<V> listaValores = new ArregloDinamico<V>();
-		for(int i=1; i<=llaves.size();i++){
-			listaValores.addLast(get(llaves.getElement(i)));
-		}
-		
+		ArregloDinamico<V> listaValores = new ArregloDinamico<V>();
+		if (raiz!=null)
+			raiz.valuesInRange(listaValores, init, end);
 		return listaValores;
 	}
+				
 
 }

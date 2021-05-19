@@ -3,6 +3,7 @@ package view;
 import model.data_structures.ILista;
 import model.logic.Categoria;
 import model.logic.Modelo;
+import model.logic.Reproduccion;
 import model.logic.YoutubeVideo;
 
 public class View 
@@ -36,20 +37,16 @@ public class View
 		 * @param l, lista de los videos que se quieren imprimir.
 		 * @param s, numero de videos de la lista que se quieren imprimir
 		 */
-		public void imprimirVideoReq(ILista<YoutubeVideo> l, int s){
+		public void imprimirVideoReq(ILista<Reproduccion> l, int s){
 			System.out.println("=====================================");
 			System.out.println("LISTA VIDEOS:");
 			System.out.println("=====================================");
 			for(int i=1;i<=s;i++){
-				YoutubeVideo a = (YoutubeVideo) l.getElement(i); 
-				System.out.println("Video #"+i);
-				System.out.println(" title: "+a.darTitulo());
-				System.out.println(" canal: "+a.darCanal());
-				System.out.println(" publicacion: "+a.darFechaP());
-				System.out.println(" views: "+a.darViews());
-				System.out.println(" likes: "+a.darLikes());
-				System.out.println(" dislikes: "+a.darDislikes());
-				System.out.println(" tags: "+a.darTags());
+				Reproduccion a = (Reproduccion) l.getElement(i); 
+				System.out.println("Rep #"+i);
+				System.out.println(" ID: "+a.darId());
+				System.out.println(" Energia: "+a.darCaracteristicas().getElement(7));
+				System.out.println(" Dance: "+a.darCaracteristicas().getElement(4));
 			}
 			System.out.println("=====================================");
 		}

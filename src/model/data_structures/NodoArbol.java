@@ -195,7 +195,25 @@ public class NodoArbol<K extends Comparable<K>, V> implements Comparable<NodoArb
 		nodo.darIzquierdo().asignarColor("negro");
 		nodo.darDerecho().asignarColor("negro");
 	}
-
+	
+	public ArregloDinamico<K> keysInRange(ArregloDinamico<K> lista, K init, K end){
+		int menor = end.compareTo(llave);
+		int mayor = init.compareTo(llave);
+		if(menor<0) izquierdo.keysInRange(lista, init, end);
+		if(menor<=0 && mayor>=0) lista.addLast(llave);
+		if(mayor>0) derecho.keysInRange(lista, init, end);
+		return lista;
+	}
+	
+	public ArregloDinamico valuesInRange(ArregloDinamico lista, K init, K end){
+		
+		int menor = end.compareTo(llave);//Da positivo cuando end es mayor a la llave
+		int mayor = init.compareTo(llave);//Da positivo cuando init es mayor a la llave
+		if((menor<0||mayor<0)&&izquierdo!=null) izquierdo.valuesInRange(lista, init, end);
+		if(menor>=0 && mayor<=0) lista.addLast((Comparable) valor);
+		if((mayor>0||menor>0)&&derecho!=null) derecho.valuesInRange(lista, init, end);
+		return lista;
+	}
 	
 	
 	//Utilizo el metodo compareTo de la llave (que probablemte sera un int o String)

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @param <T>
  *
  */
-public class ArregloDinamico<T extends Comparable<T>> implements ILista<T>, Comparable<ArregloDinamico<T>> { 
+public class ArregloDinamico<T > implements ILista<T>, Comparable<ArregloDinamico<T>> { 
 	/**
 	 * Capacidad maxima del arreglo
 	 */
@@ -188,7 +188,7 @@ public class ArregloDinamico<T extends Comparable<T>> implements ILista<T>, Comp
 	public int isPresent(T element) {
 		int pos = -1;
 		for(int i=0; i<elementos.length;i++){
-			if(elementos[i]!=null&&(((Comparable) elementos[i]).compareTo(element))==0){
+			if(elementos[i]!=null&&(((Comparable<T>) elementos[i]).compareTo(element))==0){
 				//Sumo 1 para devolver la posicion aparente al usuario
 				return i+1;
 			}
